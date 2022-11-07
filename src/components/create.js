@@ -1,52 +1,78 @@
 import React from "react";
+import axios from "axios";
 
 export class Create extends React.Component {
 
-    constructor(){
+    //constructor
+    constructor() {
         super();
+        //binding all methods
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onChangeBookTitle = this.onChangeBookTitle.bind(this);
         this.onChangeBookCover = this.onChangeBookCover.bind(this);
         this.onChangeBookAuthor = this.onChangeBookAuthor.bind(this);
+        //set state empty string
         this.state = {
-            title:'',
-            cover:'',
-            author:''
-        }
-    }
-    handleSubmit(e){
+            title: '',
+            cover: '',
+            author: ''
+        }//end state
+    }//end constructor
+
+    //handleSubmit method with e parameter
+    handleSubmit(e) {
         e.preventDefault();
         console.log(`Button clicked 
         ${this.state.title},
         ${this.state.cover},
         ${this.state.author}`);
-        this.setState({
-            title:'',
-            cover:'',
-            author:''
-        })
-    }
 
-    onChangeBookTitle(e){
-        this.setState({
-            title:e.target.value
-        })
-    }
-    onChangeBookCover(e){
-        this.setState({
-            cover:e.target.value
-        })
-    }
-    onChangeBookAuthor(e){
-        this.setState({
-            author:e.target.value
-        })
-    }
+        const book = {
+            title:this.state.title,
+            cover:this.state.cover,
+            author:this.state.author
+        }
 
+        axios.post('http://localhost:4000/api/books',book)
+        .then()
+        .catch();
+        
+        //set the state as string
+        this.setState({
+            title: '',
+            cover: '',
+            author: ''
+        })
+    }//end handleSubmit method
+
+    //onChangeBookTitle method
+    onChangeBookTitle(e) {
+        this.setState({
+            title: e.target.value
+        })
+    }//end onChangeBookTitle method
+
+    //onChangeBookCover method
+    onChangeBookCover(e) {
+        this.setState({
+            cover: e.target.value
+        })
+    }//end onChangeBookCover method
+
+    //onChangeBookAuthor method
+    onChangeBookAuthor(e) {
+        this.setState({
+            author: e.target.value
+        })
+    }//end onChangeBookAuthor method
+
+    //render method
     render() {
+        //return method
         return (
             <div>
                 <h3>Hello from Create Component!</h3>
+                {/* when Submit the form call handleSubmit method  */}
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>Add Book Title: </label>
@@ -78,6 +104,6 @@ export class Create extends React.Component {
                     <input type="submit" value="Add Book" />
                 </form>
             </div>
-        );
-    }
-}
+        );//end retuen method
+    }//end render method
+}//end class
