@@ -9,7 +9,7 @@ export class Read extends React.Component{
         axios.get('http://localhost:4000/api/books')
         .then((response)=>{
             //setting the state here
-            this.setState({books:response.data.mybooks})
+            this.setState({books:response.data})
         })//end then method
 
         //catch method catch the error
