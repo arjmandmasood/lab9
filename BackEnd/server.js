@@ -107,6 +107,14 @@ app.get('/api/books/:id',(req,res)=>{
     })
 })
 
+app.put('/api/books/:id',(req,res)=>{
+    console.log("Update " +req.params.id);
+    //find the data with id and update in bookModel
+    bookModel.findByIdAndUpdate(req.params.id,req.body,{new: true},(err,data)=>{
+        res.json(data);
+})
+})
+
 //app.listen method return the written message with the port number
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
