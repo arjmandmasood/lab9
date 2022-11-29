@@ -18,8 +18,8 @@ const navigate = useNavigate();
 //useEffect Hook is similar componentDidMount
 useEffect(() => {
 //axios is a promised based web client
-//make a HTTP Request with GET method and pass as part of the
-//url.
+//make a HTTP Request with GET method and pass as part of the url.
+// .get get the data or record from the database
 axios.get('http://localhost:4000/api/books/' + id)
 .then((response) => {
 // Assign Response data to the arrays using useState.
@@ -42,6 +42,8 @@ cover: cover,
 author: author
 };
 
+// .put is HTTP req. it goes to server and server send it to the database
+// .put overwrite the data or record in the database
 axios.put('http://localhost:4000/api/books/' + id, newBook)
 .then((res) => {
 console.log(res.data);

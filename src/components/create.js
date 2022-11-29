@@ -33,6 +33,7 @@ export class Create extends React.Component {
             author:this.state.author
         }
 
+        // .post add new record in database
         //send the data on this 'http://localhost:4000/api/books'
         axios.post('http://localhost:4000/api/books',book)
         .then()

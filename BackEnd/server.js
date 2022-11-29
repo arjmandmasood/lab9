@@ -107,6 +107,7 @@ app.get('/api/books/:id',(req,res)=>{
     })
 })
 
+// in this we find the record by id and update it
 app.put('/api/books/:id',(req,res)=>{
     console.log("Update " +req.params.id);
     //find the data with id and update in bookModel
