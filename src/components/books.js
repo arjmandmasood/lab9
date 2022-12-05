@@ -8,7 +8,7 @@ export class Books extends React.Component{
         //return method
         return this.props.books.map(
             (book)=>{
-                return <BookItem book={book} key={book._id}></BookItem>
+                return <BookItem book={book} key={book._id} ReloadData={this.props.ReloadData}></BookItem>
             }
         );//end return menthod
     }//end render method

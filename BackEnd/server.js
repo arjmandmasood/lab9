@@ -17,7 +17,7 @@ next();
 // getting-started.js
 const mongoose = require('mongoose');
 
-main().catch(err => console.log(err));
+main().catch(error => console.log(error));
 
 async function main() {
   await mongoose.connect('mongodb+srv://admin:admin@cluster0.eml4wfj.mongodb.net/?retryWrites=true&w=majority');
@@ -92,7 +92,7 @@ app.get('/api/books', (req, res) => {
     // ]
 
     // find the error or data from bookModel
-    bookModel.find((err,data)=>{
+    bookModel.find((error,data)=>{
         console.log(data);
         res.json(data);
     })  
@@ -102,7 +102,7 @@ app.get('/api/books', (req, res) => {
 app.get('/api/books/:id',(req,res)=>{
     console.log(req.params.id);
     //find the data with id in bookModel
-    bookModel.findById(req.params.id,(err,data)=>{
+    bookModel.findById(req.params.id,(error,data)=>{
         res.json(data);
     })
 })
@@ -111,10 +111,21 @@ app.get('/api/books/:id',(req,res)=>{
 app.put('/api/books/:id',(req,res)=>{
     console.log("Update " +req.params.id);
     //find the data with id and update in bookModel
-    bookModel.findByIdAndUpdate(req.params.id,req.body,{new: true},(err,data)=>{
+    bookModel.findByIdAndUpdate(req.params.id,req.body,{new: true},(error,data)=>{
         res.json(data);
 })
 })
+
+// in this we delete the record by id
+app.delete('/api/books/:id',(req,res)=>{
+    console.log("Deleting: " +req.params.id);
+     //find the data with id and delete from bookModel
+     bookModel.deleteOne({_id:req.params.id}, (error,data)=>{
+        res.json(data);
+})
+})
+
+
 
 //app.listen method return the written message with the port number
 app.listen(port, () => {
